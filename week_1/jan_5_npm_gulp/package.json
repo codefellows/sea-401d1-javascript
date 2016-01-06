@@ -1,0 +1,21 @@
+{
+  "name": "jan_5_npm_gulp",
+  "version": "0.1.0",
+  "description": "super awesome greet app that's incredibly useful and awesome also aswesome",
+  "main": "arg_proc.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "mocha": "^2.3.4"
+  }
+}
