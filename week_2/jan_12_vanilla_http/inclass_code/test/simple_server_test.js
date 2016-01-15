@@ -7,6 +7,10 @@ const expect = chai.expect;
 const request = chai.request;
 
 describe('simple http server', () => {
+  after(() => {
+    server.close();
+  });
+
   it('should have a hello route', (done) => {
     request('localhost:3000')
       .get('/hello')
