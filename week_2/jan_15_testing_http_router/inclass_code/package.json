@@ -1,0 +1,19 @@
+{
+  "name": "sea-401-d1-http-router",
+  "version": "0.1.0",
+  "description": "a basic http router",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/**/*test.js"
+  },
+  "keywords": [
+    "awesome",
+    "superawesome",
+    "awesomest"
+  ],
+  "author": "tyler@codefellows.co",
+  "license": "MIT"
+}
