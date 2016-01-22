@@ -77,7 +77,26 @@
 - SuperAgent CLI
 
 #####Assignments
+- HTTP server with a simple persistence
 
 ####Friday
+####Functional Patterns
+- Currying
+- Partial application
+- Functions as first class objects
+- Scoping
+
+####Testing
+  - Testing concepts
+    - Unit testing
+      - Mocking interfaces
+    - Integration testing
+
 #####Demos
+- Reading req body
+  - Data event
+  - Promises
+- Currying
+
 #####Assignments
+- Make an HTTP framework
