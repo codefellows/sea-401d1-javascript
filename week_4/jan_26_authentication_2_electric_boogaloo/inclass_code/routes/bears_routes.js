@@ -2,6 +2,7 @@ const express = require('express');
 const jsonParser = require('body-parser').json();
 const Bear = require(__dirname + '/../models/bear');
 const handleDBError = require(__dirname + '/../lib/handle_db_error');
+const jwtAuth = require(__dirname + '/../lib/jwt_auth');
 
 var bearRouter = module.exports = exports = express.Router();
 
@@ -13,8 +14,18 @@ bearRouter.get('/bears', (req, res) => {
   });
 });
 
-bearRouter.post('/bears', jsonParser, (req, res) => {
+bearRouter.get('/mybears', jwtAuth, (req, res) => {
+  Bear.find({wranglerId: req.user._id}, (err, data) => {
+    if (err) return handleDBError(err, res);
+
+    res.status(200).json(data);
+  });
+
+});
+
+bearRouter.post('/bears', jwtAuth, jsonParser, (req, res) => {
   var newBear = new Bear(req.body);
+  newBear.wranglerId = req.user._id;
   newBear.save((err, data) => {
     if (err) return handleDBError(err, res);    
 
