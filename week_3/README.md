@@ -68,5 +68,10 @@
 - An API with two RESTful resources and one non resource based end point
 
 ####Friday
+- Review
+
 #####Demos
+- General discussion of the concepts brough up so far
+
 #####Assignments
+- Make a two resource API with a different server side framework
