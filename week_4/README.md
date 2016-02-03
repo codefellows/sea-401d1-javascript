@@ -54,9 +54,29 @@
 - Add Authentication to your API
 
 ####Thursday
+#####Database Relations
+- One to one
+- One to many
+- Many to many
+
 #####Demos
+- Database relations
+
 #####Assignments
+- In class schema and routing design
 
 ####Friday
+- Week review
+
+#####Data Structures
+- Trees
+  - Binary Search Trees
+  - Traversal
+    - Depth first vs breadth first
+  - Searching
+
 #####Demos
+- Iterative traversal
+
 #####Assignments
+- In class white boarding
