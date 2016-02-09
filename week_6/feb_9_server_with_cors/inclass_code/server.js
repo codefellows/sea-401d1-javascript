@@ -5,6 +5,11 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/bears_app_dev'
 
 const bearsRouter = require(__dirname + '/routes/bears_routes');
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5000');
+  next();
+});
+
 app.use('/api', bearsRouter);
 
 var PORT = process.env.PORT || 3000;
