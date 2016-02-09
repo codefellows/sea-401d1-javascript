@@ -4,9 +4,16 @@
 	<meta charset="UTF-8">
 	<title></title>
 </head>
-<body data-ng-app>
-  <h1>{{greeting}}</h1>
-  <input type="text" data-ng-model="greeting">
+<body data-ng-app="bearsApp">
+  <main data-ng-controller="bearsController">
+    <h1>{{greeting}}</h1>
+    <input type="text" data-ng-model="greeting">
+
+    <section data-ng-controller="anotherController">
+      <h2>Inside Another Controller:{{greeting}}</h2>
+      <input type="text" data-ng-model="greeting">
+    </section>
+  </main>
 
   <script src="bundle.js"></script>
 </body>
