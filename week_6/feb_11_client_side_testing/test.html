@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TESTS!!!</title>
+  <link rel="stylesheet" href="./node_modules/mocha/mocha.css">
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="./node_modules/mocha/mocha.js"></script>
+  <script src="./node_modules/chai/chai.js"></script>
+  <script>
+    mocha.setup('bdd');
+    var expect = chai.expect;
+    describe('super awesome browser things', () => {
+      it('should have the best expect statements', () => {
+        expect(false).to.eql(false);
+      });
+
+      it('should fail this one', () => {
+        expect('this test').to.eql('something useful');
+      });
+    });
+
+    mocha.run();
+  </script>
+</body>
+</html>
