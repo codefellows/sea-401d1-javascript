@@ -10,7 +10,8 @@
     <ul>
       <li data-ng-repeat="bear in bears">{{bear.name}}, {{bear.flavor}}
         <button data-ng-click="deleteBear(bear)">Delete Bear</button>
-        <form>
+        <button data-ng-click="bear.editting = !bear.editting">Update Bear</button>
+        <form data-ng-if="bear.editting" data-ng-submit="updateBear(bear)">
           <input data-ng-model="bear.name" type="text"/>
           <input data-ng-model="bear.flavor" type="text"/>
           <button type="submit">Update</button>
