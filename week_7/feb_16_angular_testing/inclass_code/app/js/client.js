@@ -1,18 +1,19 @@
 const angular = require('angular');
-
 const bearsApp = angular.module('bearsApp', []);
 
-bearsApp.controller('bearsController', ['$scope', '$http', ($scope, $http) => {
+bearsApp.controller('BearsController', ['$scope', '$http', function($scope, $http) {
   $scope.greeting = 'hello world';
   $scope.bears = [];
 
-  $http.get('http://localhost:3000/api/bears')
-    .then((res) => {
-      console.log('success!');
-      $scope.bears = res.data;
-    }, (err) => {
-      console.log(err);
-    });
+  $scope.getAll = function() {
+    $http.get('http://localhost:3000/api/bears')
+      .then((res) => {
+        console.log('success!');
+        $scope.bears = res.data;
+      }, (err) => {
+        console.log(err);
+      });
+  };
 
   $scope.createBear = function(bear) {
     $http.post('http://localhost:3000/api/bears', bear)
@@ -21,17 +22,17 @@ bearsApp.controller('bearsController', ['$scope', '$http', ($scope, $http) => {
         $scope.newBear = null;
       }, (err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   $scope.deleteBear = function(bear) {
     $http.delete('http://localhost:3000/api/bears/' + bear._id)
       .then((res) => {
         $scope.bears = $scope.bears.filter((i) => i !== bear);
       }, (err) => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   $scope.updateBear = function(bear) {
     $http.put('http://localhost:3000/api/bears/' + bear._id, bear)
@@ -41,12 +42,6 @@ bearsApp.controller('bearsController', ['$scope', '$http', ($scope, $http) => {
       }, (err) => {
         console.log(err);
         bear.editting = false;
-      })
-  }
+      });
+  };
 }]);
-
-
-
-
-
-

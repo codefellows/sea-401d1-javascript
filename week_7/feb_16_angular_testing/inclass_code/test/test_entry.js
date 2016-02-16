@@ -1,5 +1,1 @@
-describe('it should do some stuff', () => {
-  it('should work after a build', () => {
-    expect(true).toBe(true);
-  });
-});
+require(__dirname + '/bears_controller_test');

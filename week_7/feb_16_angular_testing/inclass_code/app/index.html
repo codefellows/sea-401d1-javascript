@@ -5,7 +5,7 @@
 	<title>Super Bear Stream Adventure</title>
 </head>
 <body data-ng-app="bearsApp">
-  <main data-ng-controller="bearsController">
+  <main data-ng-controller="BearsController" data-ng-init="getAll()">
     <h1>Bears!!!!:</h1>
     <ul>
       <li data-ng-repeat="bear in bears">{{bear.name}}, {{bear.flavor}}
