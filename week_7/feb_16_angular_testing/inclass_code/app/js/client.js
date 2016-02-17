@@ -37,7 +37,6 @@ bearsApp.controller('BearsController', ['$scope', '$http', function($scope, $htt
   $scope.updateBear = function(bear) {
     $http.put('http://localhost:3000/api/bears/' + bear._id, bear)
       .then((res) => {
-        $scope.bears[$scope.bears.indexOf(bear)] = bear;
         bear.editting = false;
       }, (err) => {
         console.log(err);

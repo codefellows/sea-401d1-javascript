@@ -39,5 +39,15 @@ describe('bears controller', () => {
       expect($scope.bears.length).toBe(1);
       expect($scope.bears[0].name).toBe('test bear');
     });
+
+    it('should create a new bear', () => {
+      $httpBackend.expectPOST('http://localhost:3000/api/bears', {name: 'the sent bear'}).respond(200, {name: 'the response bear'});
+      $scope.newBear = {name: 'the new bear'};
+      $scope.createBear({name: 'the sent bear'});
+      $httpBackend.flush();
+      expect($scope.bears.length).toBe(1);
+      expect($scope.newBear).toBe(null);
+      expect($scope.bears[0].name).toBe('the response bear');
+    });
   });
 });
