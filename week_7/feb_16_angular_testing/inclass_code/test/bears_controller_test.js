@@ -49,5 +49,25 @@ describe('bears controller', () => {
       expect($scope.newBear).toBe(null);
       expect($scope.bears[0].name).toBe('the response bear');
     });
+
+    it('should update a bear', () => {
+      var testBear = {name: 'inside scope', editing: true, _id: 5};
+      $scope.bears.push(testBear);
+      $httpBackend.expectPUT('http://localhost:3000/api/bears/5', testBear).respond(200);
+      $scope.updateBear(testBear);
+      $httpBackend.flush();
+      expect(testBear.editing).toBe(false); 
+      expect($scope.bears[0].editing).toBe(false);
+    });
+
+    it('should murder a bear', () => {
+      var testBear = {name: 'condemned bear', _id: 1};
+      $scope.bears.push(testBear);
+      expect($scope.bears.indexOf(testBear)).not.toBe(-1);
+      $httpBackend.expectDELETE('http://localhost:3000/api/bears/1').respond(200);
+      $scope.deleteBear(testBear);
+      $httpBackend.flush();
+      expect($scope.bears.indexOf(testBear)).toBe(-1);
+    });
   });
 });
