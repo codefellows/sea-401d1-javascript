@@ -28,7 +28,7 @@ bearsApp.controller('BearsController', ['$scope', '$http', function($scope, $htt
   $scope.deleteBear = function(bear) {
     $http.delete('http://localhost:3000/api/bears/' + bear._id)
       .then((res) => {
-        $scope.bears = $scope.bears.filter((i) => i !== bear);
+        $scope.bears.splice($scope.bears.indexOf(bear), 1);
       }, (err) => {
         console.log(err);
       });
