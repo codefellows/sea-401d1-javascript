@@ -10,37 +10,30 @@ bearsApp.controller('BearsController', ['$scope', '$http', 'Resource', function(
 
   $scope.getAll = function() {
     bearService.getAll(function(err, res) {
-      if (err) console.log(err);
+      if (err) return console.log(err);
       $scope.bears = res;
     });
   };
 
   $scope.createBear = function(bear) {
-    $http.post('http://localhost:3000/api/bears', bear)
-      .then((res) => {
-        $scope.bears.push(res.data);
-        $scope.newBear = null;
-      }, (err) => {
-        console.log(err);
-      });
+    bearService.create(bear, function(err, res) {
+      if (err) return console.log(err);
+      $scope.bears.push(res);
+      $scope.newBear = null;
+    });
   };
 
   $scope.deleteBear = function(bear) {
-    $http.delete('http://localhost:3000/api/bears/' + bear._id)
-      .then((res) => {
-        $scope.bears.splice($scope.bears.indexOf(bear), 1);
-      }, (err) => {
-        console.log(err);
-      });
+    bearService.delete(bear, function(err, res) {
+      if (err) return console.log(err);
+      $scope.bears.splice($scope.bears.indexOf(bear), 1);
+    });
   };
 
   $scope.updateBear = function(bear) {
-    $http.put('http://localhost:3000/api/bears/' + bear._id, bear)
-      .then((res) => {
-        bear.editing = false;
-      }, (err) => {
-        console.log(err);
-        bear.editting = false;
-      });
+    bearService.update(bear, function(err, res) {
+      bear.editing = false;
+      if (err) return console.log(err);
+    });
   };
 }]);

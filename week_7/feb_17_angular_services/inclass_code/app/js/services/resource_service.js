@@ -21,6 +21,21 @@ module.exports = exports = function(app) {
         .then(handleSuccess(callback), handleFailure(callback));
     };
 
+    Resource.prototype.create = function(data, callback) {
+      $http.post('http://localhost:3000/api' + this.resourceName, data)
+        .then(handleSuccess(callback), handleFailure(callback));
+    };
+
+    Resource.prototype.update = function(data, callback) {
+      $http.put('http://localhost:3000/api' + this.resourceName + '/' + data._id, data)
+        .then(handleSuccess(callback), handleFailure(callback));
+    };
+
+    Resource.prototype.delete = function(data, callback) {
+      $http.delete('http://localhost:3000/api' + this.resourceName + '/' + data._id)
+        .then(handleSuccess(callback), handleFailure(callback));
+    };
+
     return function(resourceName) {
       return new Resource(resourceName);
     }
