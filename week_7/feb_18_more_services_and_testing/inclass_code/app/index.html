@@ -5,6 +5,7 @@
 	<title>Super Bear Stream Adventure</title>
 </head>
 <body data-ng-app="bearsApp">
+  <div data-ng-controller="UselessController"><h1>before: {{greeting}}</h1></div>
   <main data-ng-controller="BearsController" data-ng-init="getAll()">
     <h1>Bears!!!!:</h1>
     <ul>
@@ -26,6 +27,7 @@
     <p>{{bears}}</p>
 
   </main>
+  <div data-ng-controller="UselessController"><h1>After: {{greeting}}</h1></div>
 
   <script src="bundle.js"></script>
 </body>

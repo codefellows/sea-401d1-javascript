@@ -1,9 +1,15 @@
 const angular = require('angular');
 const bearsApp = angular.module('bearsApp', []);
 require('./services/resource_service')(bearsApp);
+require('./services/cf_store')(bearsApp);
 
-bearsApp.controller('BearsController', ['$scope', '$http', 'cfResource', function($scope, $http, Resource) {
+bearsApp.controller('UselessController', ['cfStore', '$scope', function(cfStore, $scope) {
+  $scope.greeting = cfStore.get('greeting');
+}]);
+
+bearsApp.controller('BearsController', ['$scope', '$http', 'cfResource', 'cfStore', function($scope, $http, Resource, cfStore) {
   $scope.greeting = 'hello world';
+  cfStore.set('greeting', 'hello world');
   $scope.bears = [];
   var bearService = Resource('/bears');
 
@@ -16,14 +22,16 @@ bearsApp.controller('BearsController', ['$scope', '$http', 'cfResource', functio
   };
 
   $scope.createBear = function(bear) {
+    $scope.bears.push(bear);
     bearService.create(bear, function(err, res) {
       if (err) return console.log(err);
-      $scope.bears.push(res);
+      $scope.bears.splice($scope.bears.indexOf(bear), 1, res);
       $scope.newBear = null;
     });
   };
 
   $scope.deleteBear = function(bear) {
+    if (!bear._id) return setTimeout(function() {$scope.deleteBear(bear);}, 1000);
     bearService.delete(bear, function(err, res) {
       if (err) return console.log(err);
       $scope.bears.splice($scope.bears.indexOf(bear), 1);
