@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Super Bear Stream Adventure</title>
+</head>
+<body data-ng-app="bearsApp">
+  <div data-ng-controller="UselessController"><h1>before: {{greeting}}</h1></div>
+  <main data-ng-controller="BearsController" data-ng-init="getAll()">
+    <h1>Bears!!!!:</h1>
+    <ul>
+      <li data-ng-repeat="bear in bears">{{bear.name}}, {{bear.flavor}}
+        <button data-ng-click="deleteBear(bear)">Delete Bear</button>
+        <button data-ng-click="bear.editting = !bear.editting">Update Bear</button>
+        <form data-ng-if="bear.editting" data-ng-submit="updateBear(bear)">
+          <input data-ng-model="bear.name" type="text"/>
+          <input data-ng-model="bear.flavor" type="text"/>
+          <button type="submit">Update</button>
+        </form>
+      </li>
+    </ul>
+    <form data-ng-submit="createBear(newBear)">
+      <input data-ng-model="newBear.name" type="text"/>
+      <input data-ng-model="newBear.flavor" type="text"/>
+      <button type="submit">New Bear</button>
+    </form>
+    <p>{{bears}}</p>
+
+  </main>
+  <div data-ng-controller="UselessController"><h1>After: {{greeting}}</h1></div>
+
+  <script src="bundle.js"></script>
+</body>
+</html>
