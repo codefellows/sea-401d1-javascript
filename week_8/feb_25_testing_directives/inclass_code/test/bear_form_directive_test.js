@@ -22,4 +22,25 @@ describe('bear form directive', () => {
     $rootScope.$digest();
     expect(element.html()).toContain('test button');
   });
+
+  it('should be able to call a passed save function', () => {
+    var scope = $rootScope.$new();
+    $httpBackend.when('GET', '/templates/bears/directives/bear_form_directive.html').respond(200, template);
+    var called = false;
+    scope.bear = {name: 'inside scope'};
+    
+    scope.testSave = function(input) {
+      expect(input.name).toBe('from directive');
+      scope.bear = input;
+      called = true;
+    };
+
+    var element = $compile('<bear-form data-bear="{name: \'inside directive\'}" data-save=testSave></bear-form>')(scope);
+    $httpBackend.flush();
+    $rootScope.$digest();
+
+    element.isolateScope().save(scope)({name: 'from directive'});
+    expect(called).toBe(true);
+    expect(scope.bear.name).toBe('from directive');
+  });
 });
