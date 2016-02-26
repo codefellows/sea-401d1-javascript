@@ -33,5 +33,12 @@
 #####Assignments
 
 ####Friday
+#####Algorithms
+  - Sorting Algorithms
+  - Recursion
+
 #####Demos
+  - Bubble Sort
+  - Merge Sort
+
 #####Assignments
