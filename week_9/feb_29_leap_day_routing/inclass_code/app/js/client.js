@@ -4,13 +4,15 @@ require('angular-route');
 var routesApp = angular.module('routesApp', ['ngRoute']);
 routesApp.controller('firstController', ['$scope', function($scope) {
   $scope.greeting = 'hello world';
+  $scope.link = 'awesome';
 }]);
 
 routesApp.controller('fromLocation', ['$scope', '$location', '$routeParams', '$timeout', function($scope, $location, params, $timeout) {
   $scope.greeting = params.greeting;
-  $timeout(() => {
+  $scope.link = 'home';
+  $scope.goHome = function() {
     $location.path('/home');
-  }, 3000);
+  };
 }]);
 
 routesApp.config(['$routeProvider', function(routes) {
