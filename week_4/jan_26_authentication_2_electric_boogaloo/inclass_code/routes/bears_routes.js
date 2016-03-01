@@ -33,7 +33,7 @@ bearRouter.post('/bears', jwtAuth, jsonParser, (req, res) => {
   });
 });
 
-bearRouter.put('/bears/:id', jsonParser, (req, res) => {
+bearRouter.put('/bears/:id', jwtAuth, jsonParser, (req, res) => {
   var bearData = req.body;
   delete bearData._id;
   Bear.update({_id: req.params.id}, bearData, (err) => {
@@ -43,7 +43,7 @@ bearRouter.put('/bears/:id', jsonParser, (req, res) => {
   });
 });
 
-bearRouter.delete('/bears/:id', (req, res) => {
+bearRouter.delete('/bears/:id', jwtAuth, (req, res) => {
   Bear.remove({_id: req.params.id}, (err) => {
     if (err) return handleDBError(err, res);
 
