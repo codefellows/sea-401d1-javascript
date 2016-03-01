@@ -2,6 +2,12 @@ var angular = require('angular');
 require('angular-route');
 
 var routesApp = angular.module('routesApp', ['ngRoute']);
+routesApp.filter('linkFilter', function() {
+  return function(input) {
+    return 'Go ' + input[0].toUpperCase() + input.slice(1);
+  };
+});
+
 routesApp.controller('firstController', ['$scope', function($scope) {
   $scope.greeting = 'hello world';
   $scope.link = 'awesome';
