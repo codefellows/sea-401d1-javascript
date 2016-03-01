@@ -6,30 +6,9 @@
   <link rel="stylesheet" href="/css/base.css">
 </head>
 <body data-ng-app="bearsApp">
-
-  <main data-ng-controller="BearsController" data-ng-init="getAll()">
-    <h1>Bears!!!!:</h1>
-    <ul>
-      <bear data-ng-repeat="bear in bears" data-bear-data="bear">
-        <button data-ng-click="deleteBear(bear)">Delete Bear</button>
-        <button data-ng-if="!bear.editing" data-ng-click="toggleEdit(bear)">Update Bear</button>
-        <bear-form 
-          data-ng-if="bear.editing" 
-          data-save="updateBear(bear)"
-          data-button-text="Update Bear"
-          data-bear="bear"
-        >
-          <button type="button" data-ng-click="toggleEdit(bear)">Cancel</button>
-        </bear-form>
-      </bear>  
-    </ul>
-    <bear data-bear-data="newBear">
-      <bear-form 
-        data-button-text="Create new Bear"
-        data-bear="newBear"
-        data-save="createBear(newBear)"
-      ></bear-form>
-    </bear>
+  <main data-ng-view>
+    <p>Stay tuned loading, or you have a javascript blocker active</p>
+    <img src="/images/dancing_bear.gif" alt="loading">
   </main>
 
   <script src="bundle.js"></script>
