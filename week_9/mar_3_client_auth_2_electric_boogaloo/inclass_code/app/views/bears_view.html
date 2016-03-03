@@ -1,0 +1,30 @@
+<section data-ng-init="getAll()">
+  <h1>Bears!!!!:</h1>
+  <section data-ng-if="errors.length">
+    <h2>Errors: </h2>
+    <ul>
+    	<li data-ng-repeat="error in errors">{{error}}<button data-ng-click="dismissError(error)" alt="dismiss">X</button></li>
+    </ul>
+  </section>
+  <ul>
+    <bear data-ng-repeat="bear in bears" data-bear-data="bear">
+      <button data-ng-click="deleteBear(bear)">Delete Bear</button>
+      <button data-ng-if="!bear.editing" data-ng-click="toggleEdit(bear)">Update Bear</button>
+      <bear-form 
+        data-ng-if="bear.editing" 
+        data-save="updateBear(bear)"
+        data-button-text="Update Bear"
+        data-bear="bear"
+      >
+        <button type="button" data-ng-click="toggleEdit(bear)">Cancel</button>
+      </bear-form>
+    </bear>  
+  </ul>
+  <bear data-bear-data="newBear">
+    <bear-form 
+      data-button-text="Create new Bear"
+      data-bear="newBear"
+      data-save="createBear(newBear)"
+    ></bear-form>
+  </bear>
+</section>
