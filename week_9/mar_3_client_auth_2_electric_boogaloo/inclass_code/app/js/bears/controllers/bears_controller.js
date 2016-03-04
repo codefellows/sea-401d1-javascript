@@ -46,7 +46,10 @@ module.exports = function(app) {
     $scope.deleteBear = function(bear) {
       if (!bear._id) return setTimeout(function() {$scope.deleteBear(bear);}, 1000);
       bearService.delete(bear, function(err, res) {
-        if (err) return console.log(err);
+        if (err) { 
+          $scope.errors.push('could not delete bear ' + bear.name);
+          return console.log(err);
+        }
         $scope.bears.splice($scope.bears.indexOf(bear), 1);
       });
     };
@@ -55,7 +58,10 @@ module.exports = function(app) {
       bearService.update(bear, function(err, res) {
         bear.editing = false;
         bear.backup = null;
-        if (err) return console.log(err);
+        if (err) {
+          $scope.errors.push('could not update bear ' + bear.name);
+          return console.log(err);
+        }
       });
     };
   }]);

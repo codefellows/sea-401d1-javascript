@@ -6,10 +6,15 @@
   <link rel="stylesheet" href="/css/base.css">
 </head>
 <body data-ng-app="bearsApp">
-  <main data-ng-view>
-    <p>Stay tuned loading, or you have a javascript blocker active</p>
-    <img src="/images/dancing_bear.gif" alt="loading">
-  </main>
+  <div class="span" role="div" data-ng-controller="authController" data-ng-init="updateUsername()">
+    <header>
+      <p data-ng-if="username">{{'Hello ' + username}} <a href data-ng-click="logout()">logout</a></p>
+    </header>
+    <main data-ng-view>
+      <p>Stay tuned loading, or you have a javascript blocker active</p>
+      <img src="/images/dancing_bear.gif" alt="loading">
+    </main>
+  </div>
 
   <script src="bundle.js"></script>
 </body>
